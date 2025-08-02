@@ -1,0 +1,40 @@
+@Congiguration is  Spring annotation used to indicate that the class contains Spring
+bean definitions. This of it like a replacement for XML config files
+
+When yo annotate with @Configuration, you are telling Spring:
+this class is for configuration fo your application. I'll define some beans here
+that you should manage
+
+Why is it needed
+Spring needs to know how to create na manage certain objects (beans) in your app
+like services, repositories, clients, etc
+-Let Spring automatically detect and manage classes using annotations
+like @Component, @Service, @Repository
+- Or Define your beans manually using @Configuration
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public MyService myService() {
+        return new MyService(); // Spring will manage this as a bean
+    }
+}
+
+How it used with @Bean
+- THe @Bean annotation tells Spring
+Create and isntance of this methods return value and manageu it as a bean in 
+the Spring container
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+Now anywhere in your app, you can inject RestTemplate like this:
+
+@Autowired
+private RestTemplate restTemplate;
